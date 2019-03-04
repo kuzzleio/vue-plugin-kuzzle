@@ -1,0 +1,27 @@
+{
+  "name": "vue-kuzzle",
+  "version": "0.0.1",
+  "description": "A (very simple) Vuejs plugin shipping the Kuzzle SDK in your components",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xbill82/vue-kuzzle.git"
+  },
+  "keywords": [
+    "kuzzle",
+    "vuejs",
+    "plugin"
+  ],
+  "author": "Luca Marchesini <luca@kuzzle.io>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xbill82/vue-kuzzle/issues"
+  },
+  "homepage": "https://github.com/xbill82/vue-kuzzle#readme",
+  "dependencies": {
+    "kuzzle-sdk": "^6.0.0"
+  }
+}
