@@ -7,7 +7,7 @@ This plugin simply exposes the Kuzzle SDK in your Vuejs components.
 Install the plugin via
 
 ```bash
-npm install git+https://github.com/xbill82/vue-kuzzle
+npm install vue-kuzzle
 ```
 
 Then, in your Vuejs application, you need to register the plugin in your `Vue` class.
