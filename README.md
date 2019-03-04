@@ -22,7 +22,7 @@ Where `options` may contain the following options.
 
 ### `options.backends`
 
-An object of available backends to connect to. Backends are POJOs of the following form (the default config):
+An object of available backends to connect to. Backends are POJOs of the following form (the example shows the default config):
 
 ```javascript
 options.backends = {
@@ -38,7 +38,7 @@ options.backends = {
 
 The plugin will instantiate the Kuzzle SDK with the `Websocket` protocol, choosing among the available backends based on the `process.env.VUE_APP_BACKEND` environment variable. If this variable is not specified, the `local` backend is choosen as fallback.
 
-**Warning** Don't forget to `connect()` your instance!
+**Warning** Don't forget to `connect()` your instance before performing any actions.
 
 ## Accessing the Kuzzle SDK instance within the app
 
