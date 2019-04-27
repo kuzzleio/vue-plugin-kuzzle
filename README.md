@@ -18,25 +18,27 @@ import VueKuzzle from 'vue-kuzzle';
 Vue.use(VueKuzzle, options);
 ```
 
-Where `options` may contain the following options.
+Where `options` should contain the following options.
 
-### `options.backends`
+### `options`
 
-An object of available backends to connect to. Backends are POJOs of the following form (the example shows the default config):
+An object representing a backend to connect to. Backends are POJOs of the following form (the example shows the default config):
 
 ```javascript
-options.backends = {
-  local: {
-    host: 'localhost',
-    options: {
-      port: 7512,
-      sslConnection: false
-    }
+options = {
+  host: 'localhost',
+  options: {
+    port: 7512,
+    sslConnection: false
   }
 };
 ```
 
-The plugin will instantiate the Kuzzle SDK with the `Websocket` protocol, choosing among the available backends based on the `process.env.VUE_APP_BACKEND` environment variable. If this variable is not specified, the `local` backend is choosen as fallback.
+The plugin will instantiate the Kuzzle SDK with the `Websocket` protocol.
+
+The backend settings can be overwritten using the `process.env.VUE_KUZZLE_BACKEND` environment variable. To use it, just a stringified version of the settings object.
+
+If no settings are provided, the default `localhost` backend is choosen as fallback.
 
 **Warning** Don't forget to `connect()` your instance before performing any actions.
 

@@ -1,30 +1,20 @@
 import { Kuzzle, WebSocket } from 'kuzzle-sdk/dist/kuzzle';
 
-const instantiateKuzzleSDK = backends => {
-  if (!backends) {
-    backends = {
-      local: {
-        host: 'localhost',
-        options: {
-          port: 7512,
-          sslConnection: false
-        }
+const instantiateKuzzleSDK = (backendOptions) => {
+  let backend;
+
+  if (!backendOptions) {
+    backend = {
+      host: 'localhost',
+      options: {
+        port: 7512,
+        sslConnection: false
       }
     };
   }
 
-  let backendName = process.env.VUE_APP_BACKEND
-    ? process.env.VUE_APP_BACKEND
-    : 'local';
-
-  if (process.env.NODE_ENV === 'production') {
-    // Define here which backend is to be used by the production build
-  }
-
-  const backend = backends[backendName] ? backends[backendName] : null;
-
-  if (!backend) {
-    throw new Error(`Unable to find backend ${backendName}`);
+  if (process.env.VUE_KUZZLE_BACKEND) {
+    backend = JSON.parse(process.env.VUE_KUZZLE_BACKEND);
   }
 
   if (!backend.host || !backend.options) {
@@ -36,7 +26,7 @@ const instantiateKuzzleSDK = backends => {
 
 const VueKuzzle = {
   install(Vue, options) {
-    Vue.prototype.$kuzzle = instantiateKuzzleSDK(options.backends);
+    Vue.prototype.$kuzzle = instantiateKuzzleSDK(options);
   }
 };
 
