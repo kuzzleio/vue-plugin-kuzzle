@@ -1,4 +1,4 @@
-# Vuejs Kuzzle Plugin
+# Vue.js Kuzzle Plugin
 
 This plugin simply exposes the Kuzzle SDK in your Vuejs components.
 
