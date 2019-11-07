@@ -1,7 +1,7 @@
 {
   "name": "vue-kuzzle",
-  "version": "0.0.2",
-  "description": "A (very simple) Vuejs plugin shipping the Kuzzle SDK in your components",
+  "version": "2.0.0",
+  "description": "A Vuejs plugin shipping the Kuzzle SDK in your components",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -22,6 +22,6 @@
   },
   "homepage": "https://github.com/xbill82/vue-kuzzle#readme",
   "dependencies": {
-    "kuzzle-sdk": "^6.0.0"
+    "kuzzle-sdk": "^7.0.0-beta.2"
   }
 }
