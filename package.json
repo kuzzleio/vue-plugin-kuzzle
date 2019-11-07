@@ -1,6 +1,6 @@
 {
   "name": "vue-kuzzle",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "A (very simple) Vuejs plugin shipping the Kuzzle SDK in your components",
   "main": "index.js",
   "scripts": {
@@ -22,6 +22,6 @@
   },
   "homepage": "https://github.com/xbill82/vue-kuzzle#readme",
   "dependencies": {
-    "kuzzle-sdk": "^6.0.0"
+    "kuzzle-sdk": "^6.2.6"
   }
 }
