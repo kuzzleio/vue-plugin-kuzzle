@@ -14,13 +14,13 @@ This plugin simply exposes the Kuzzle SDK in your Vuejs components.
 Install the plugin via
 
 ```bash
-npm install vue-kuzzle
+npm install vue-plugin-kuzzle
 ```
 
 Then, in your Vuejs application, you need to register the plugin in your `Vue` class.
 
 ```javascript
-import VueKuzzle from 'vue-kuzzle';
+import VueKuzzle from 'vue-plugin-kuzzle';
 
 Vue.use(VueKuzzle, options);
 ```
