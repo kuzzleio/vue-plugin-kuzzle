@@ -21,7 +21,7 @@
     "url": "https://github.com/kuzzleio/vue-plugin-kuzzle/issues"
   },
   "homepage": "https://github.com/kuzzleio/vue-plugin-kuzzle#readme",
-  "dependencies": {
-    "kuzzle-sdk": "^7.1.0"
+  "peerDependencies": {
+    "kuzzle-sdk": "~7.x"
   }
 }
