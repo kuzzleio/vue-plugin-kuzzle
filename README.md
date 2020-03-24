@@ -2,12 +2,12 @@
 
 This plugin simply exposes the Kuzzle SDK in your Vuejs components.
 
-## Compatibility matrice
+## Compatibility matrix
 
-| Kuzzle Version | Vue.js Kuzzle Plugin Version    |
-| -------------- | -------------- |
-| 1.x.x          | 1.x.x          | 
-| 2.x.x          | 2.x.x          | 
+| Kuzzle Version | Vue.js Kuzzle Plugin Version |
+| -------------- | ---------------------------- |
+| 1.x.x          | 1.x.x                        |
+| 2.x.x          | 2.x.x                        |
 
 ## Getting started
 

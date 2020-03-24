@@ -22,6 +22,6 @@
   },
   "homepage": "https://github.com/kuzzleio/vue-plugin-kuzzle#readme",
   "dependencies": {
-    "kuzzle-sdk": "^7.0.0-beta.2"
+    "kuzzle-sdk": "^7.1.0"
   }
 }
