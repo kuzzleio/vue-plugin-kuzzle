@@ -35,8 +35,12 @@ const instantiateKuzzleSDK = backends => {
 };
 
 const VueKuzzle = {
-  install(Vue, options) {
-    Vue.prototype.$kuzzle = instantiateKuzzleSDK(options.backends);
+  install(app, options) {
+    if (app.hasOwnProperty('prototype')) {
+      app.prototype.$kuzzle = instantiateKuzzleSDK(options.backends);
+    } else {
+      app.config.globalProperties.$kuzzle = instantiateKuzzleSDK(options.backends);
+    }
   }
 };
 
