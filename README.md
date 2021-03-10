@@ -9,8 +9,6 @@ This plugin simply exposes the Kuzzle SDK in your Vuejs components.
 | 1.x.x          | 1.x.x                        |
 | 2.x.x          | 2.x.x                        |
 
-For Vue.js 3, use the version 4.x.x of this plugin
-
 ## Getting started
 
 Install the plugin via
