@@ -14,8 +14,8 @@ jobs:
         provider: npm
         skip_cleanup: true
         email: support@kuzzle.io
-        api_key:
-          secure: ktfR6QVV59uCVLTfb60JSjPxzxg+UYe63pIGxU9awh1wJW89SQqQdeshHas3ojwrNoMOVybx/L6owtD8uIB4Xlau6pd7StBAA1VQ3vLa6RxU5SUr9VOz3RhZutRnYXH28Ziz/ynr6zVnwGxTzFsxBAdQ9CVS3ErBzliTgMVI+52YRNB3mBDiccSKVNGmp2APiWiaEidrmaOFkCwWQKsAxFTbBoCsDYGGAq8a8b1i2nE+BL4JWB1D2x55xzFaciDIQONXnY9YPAAbzCHBTKAne5iD6XwFj7Zg/42fHTn16LBSG+Sw+7aWyV11U6SJYKAjm/5GZEUrbvX/mwNQ7VYcvMStiP1nnt/L/s/Y7d0K3mwdsV8U8RCctElOeqLsDqoBzQYAxHTqRqJzyFNMcbcMhZgsHH5LgQDoJdKFwzP2ysYoazgm/jnr9atvlqucjWU8madRS34S8wD0zGjYf8VXH3WMUvL5mFwtb58FRCZKO3G7QJlGE8bdZ8CfJa/1tFnYY9SA0018GaXbh0RqQw0RskbmXEKTlnDBxaRd/ZjfaOjF4JcMGGZ8hsCRjxuDFY5Ki0kKDAlDV1W40fkkqPVm8k9H8Elwt0UFZvvAdjG4c+gV0zdAKHQ7P6uKvXiDlsKRHulE3Ztpo6jqGN69s7aLm6DKNVsaE4cNmmUOv3ODrM4=
+	api_key:
+	  secure: VWCnP7qr27FwPDi9u9qlJ80TeTJWrEIsWRnTifYTbs5sFlbgihaRsHVR9JCWCzJSAvgDNTP4lRytjuabwpOVMzlmWPzpjfcxqF16X1uj6RJPHo6FodWEhgRDPjo4LPacQxsgwjaqpnKj1X5oDAPDQusJCpQNF5oc8t8Sgf249gYaIhmkr2gdec8Ga48sqTNfG8r4jAzYRtJM+0x0StrZuAWUUqDnaKM6SZydMZ3l75VT6+V7ytIYLPhb0n5MgtB6lDm5o6eWwmmM9oC/W5fUq5oqHhay6fN/F6eRtzxtZBY0wePGZaeol+sD1kh4GeRsOLJMJThi2n5qCnkJkLLzmCJAjxf+UNwvG1ZtYBxj9+ZtfQaUhb5wcYtspz6PmbcXTZT9wpD90JtYULZqhTTP/P92XEMwh3gk+HE64VVWRxbRK3j993yfjgQbIu6nB6S6537mRkOmGfbUwiezyr5pSjnwtwj5J7OM/Imrqct1goX5peXRcZCAAbWUSA1HQZBOvzpz/EvTDAnXUsMb0bXCYRMJBL4xrsW/PTfXPxG+P0mVaJtwsBEUb9Mvw1jCRxf0Nh2mZTZcMbVWH03bYAUb6Nevn1bAxUrCo08L3L7rMRnhYwDTGshR4QZ4TkRGG8JeXQbAdidzus3zeYDEVnGFbDgCUu/7+XUIT0Vwa552vfA=
         on:
           repo: kuzzleio/vue-plugin-kuzzle
           all_branches: true
