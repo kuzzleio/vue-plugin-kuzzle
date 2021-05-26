@@ -1,6 +1,6 @@
 import { Kuzzle, WebSocket } from 'kuzzle-sdk/dist/kuzzle';
 
-const instantiateKuzzleSDK = backends => {
+const instantiateKuzzleSDK = (backends, sdkOptions) => {
   if (!backends) {
     backends = {
       local: {
@@ -31,15 +31,16 @@ const instantiateKuzzleSDK = backends => {
     throw new Error(`Backend ${backendName} is malformed`);
   }
 
-  return new Kuzzle(new WebSocket(backend.host, backend.options));
+  return new Kuzzle(new WebSocket(backend.host, backend.options), sdkOptions);
 };
 
 const VueKuzzle = {
   install(app, options) {
+    const sdkOptions = options.sdkOptions ? options.sdkOptions : {};
     if (app.hasOwnProperty('prototype')) {
-      app.prototype.$kuzzle = instantiateKuzzleSDK(options.backends);
+      app.prototype.$kuzzle = instantiateKuzzleSDK(options.backends, sdkOptions);
     } else {
-      app.config.globalProperties.$kuzzle = instantiateKuzzleSDK(options.backends);
+      app.config.globalProperties.$kuzzle = instantiateKuzzleSDK(options.backends, sdkOptions);
     }
   }
 };

@@ -47,6 +47,10 @@ The plugin will instantiate the Kuzzle SDK with the `Websocket` protocol, choosi
 
 **Warning** Don't forget to `connect()` your instance before performing any actions.
 
+### `options.sdkOptions`
+An object that contains the SDK options.
+You can find the available options list [here](https://docs.kuzzle.io/sdk/js/7/core-classes/kuzzle/constructor/#options)
+
 ## Accessing the Kuzzle SDK instance within the app
 
 You'll be able to access the Kuzzle SDK instance from the components as
