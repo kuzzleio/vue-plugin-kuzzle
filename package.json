@@ -4,7 +4,8 @@
   "description": "A Vuejs plugin shipping the Kuzzle SDK in your components",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\""
+    "test": "echo \"Error: no test specified\"",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -23,5 +24,13 @@
   "homepage": "https://github.com/kuzzleio/vue-plugin-kuzzle#readme",
   "peerDependencies": {
     "kuzzle-sdk": "~7.x"
+  },
+  "dependencies": {
+    "kuzzle-sdk": "^7.7.6",
+    "vue": "^2.6.14"
+  },
+  "devDependencies": {
+    "@types/node": "^16.10.1",
+    "typescript": "^4.4.3"
   }
 }
