@@ -1,6 +1,6 @@
 {
   "name": "vue-plugin-kuzzle",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "A Vuejs plugin shipping the Kuzzle SDK in your components",
   "main": "index.js",
   "types": "./vue-kuzzle.d.ts",
