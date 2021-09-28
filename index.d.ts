@@ -13,8 +13,8 @@ declare module 'vue/types/vue' {
  * `this.$kuzzle`.
  *
  * @param Vue The Vue application to apply the plugin to
- * @param options Options passed to the Kuzzle SDK Websocket constructor
+ * @param options Options passed to the Kuzzle SDK constructor
  *
- * @see https://next-docs.kuzzle.io/sdk/js/7/protocols/websocket/constructor/
+ * @see https://docs.kuzzle.io/sdk/js/7/core-classes/kuzzle/constructor/#options
  */
 export declare function VueKuzzle(Vue: typeof _Vue, options: any): void;

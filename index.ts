@@ -47,9 +47,9 @@ const instantiateKuzzleSDK = (backendsConfig: Backends, sdkOptions: any): Kuzzle
  * `this.$kuzzle`.
  * 
  * @param Vue The Vue application to apply the plugin to
- * @param options Options passed to the Kuzzle SDK Websocket constructor
+ * @param options Options passed to the Kuzzle SDK constructor
  * 
- * @see https://next-docs.kuzzle.io/sdk/js/7/protocols/websocket/constructor/
+ * @see https://docs.kuzzle.io/sdk/js/7/core-classes/kuzzle/constructor/#options
  */
 export function VueKuzzle(Vue: typeof _Vue, options: any) {
   const sdkOptions = options.sdkOptions ? options.sdkOptions : {};

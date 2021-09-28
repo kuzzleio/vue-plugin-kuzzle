@@ -20,7 +20,7 @@ npm install vue-plugin-kuzzle
 Then, in your Vuejs application, you need to register the plugin in your `Vue` class.
 
 ```javascript
-import VueKuzzle from 'vue-plugin-kuzzle';
+import { VueKuzzle } from 'vue-plugin-kuzzle';
 
 Vue.use(VueKuzzle, options);
 ```
@@ -50,6 +50,20 @@ The plugin will instantiate the Kuzzle SDK with the `Websocket` protocol, choosi
 ### `options.sdkOptions`
 An object that contains the SDK options.
 You can find the available options list [here](https://docs.kuzzle.io/sdk/js/7/core-classes/kuzzle/constructor/#options)
+
+## Specify the backend via environment variables
+
+Aside from the `backends` option, you can define the backend to connect to entirely via environment variables.
+
+* `VUE_APP_BACKEND_HOST` contains the hostname (e.g. `kuzzle.mydomain.com`),
+* `VUE_APP_BACKEND_PORT` contains the port (e.g. `443`),
+* `VUE_APP_BACKEND_SSL` can be set to `true` if the connection supports the SSL layer (do not set this variable if SSL is not supported).
+
+For example, you can build your up to connect the Websocket to `wss://kuzzle.mydomain.com:443` like the following
+
+```
+VUE_APP_BACKEND_HOST=kuzzle.mydomain.com VUE_APP_BACKEND_PORT=443 VUE_APP_BACKEND_SSL=true npm run build
+```
 
 ## Accessing the Kuzzle SDK instance within the app
 
