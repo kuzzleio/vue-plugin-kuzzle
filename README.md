@@ -65,6 +65,16 @@ For example, you can build your up to connect the Websocket to `wss://kuzzle.myd
 VUE_APP_BACKEND_HOST=kuzzle.mydomain.com VUE_APP_BACKEND_PORT=443 VUE_APP_BACKEND_SSL=true npm run build
 ```
 
+## Specify the backend via localStorage
+
+_Purely for debug purposes_, you can override all the backend configuration by setting your backend as stringified JSON in the `kuzzle-backend` Local Storage item, e.g.
+
+```
+{ "host": "myinstance.mydomain.io",  "options": { "port": 443, "ssl": true } }
+```
+
+**Beware that Local Storage is persistent and it is fairly easy to forget you set this item.** Use it consciously and keep in mind it is a good practice to unset it as soon as your debug session is over.
+
 ## Accessing the Kuzzle SDK instance within the app
 
 You'll be able to access the Kuzzle SDK instance from the components as
