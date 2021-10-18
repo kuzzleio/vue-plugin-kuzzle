@@ -1,6 +1,8 @@
 import { Kuzzle, WebSocket } from 'kuzzle-sdk';
 import _Vue  from 'vue';
 
+const LS_KEY = 'kuzzle-backend'
+
 interface Backend {
   host: string;
   options: {
@@ -13,7 +15,7 @@ interface Backends {
   [name: string]: Backend
 }
 
-const instantiateKuzzleSDK = (backendsConfig: Backends, sdkOptions: any): Kuzzle => {
+export function getBackendFromConf(backendsConfig: Backends) {
   const backends: Backends = {
     default: {
       host: process.env.VUE_APP_BACKEND_HOST || 'localhost',
@@ -29,17 +31,39 @@ const instantiateKuzzleSDK = (backendsConfig: Backends, sdkOptions: any): Kuzzle
     ? process.env.VUE_APP_BACKEND
     : 'default';
 
-  const backend = backends[backendName] ? backends[backendName] : null;
+    if (!backends[backendName]) {
+      throw new Error(`Unable to find backend ${backendName} in configuration.`);
+    }
+
+  return backends[backendName] ? backends[backendName] : null;
+}
+
+export function getBackendFromLocalStorage() {
+  const lsItem = localStorage.getItem(LS_KEY);
+  if (!lsItem) {
+    return null;
+  }
+  const backend = JSON.parse(lsItem)
+
+  if (typeof backend !== 'object') {
+    throw new Error(`Item found in localStorage (${LS_KEY}) is malformed. Expected an object, found ${backend}`)
+  }
+
+  return backend;
+}
+
+export const instantiateKuzzleSDK = (backendsConfig: Backends, sdkOptions: any): Kuzzle => {
+  const backend:Backend | null = getBackendFromLocalStorage() || getBackendFromConf(backendsConfig)
 
   if (!backend) {
-    throw new Error(`Unable to find backend ${backendName}`);
+    throw new Error('No backend resolved.');
   }
 
-  if (!backend.host || !backend.options) {
-    throw new Error(`Backend ${backendName} is malformed`);
+  if (!backend.host) {
+    throw new Error(`Backend is malformed (missing host)`);
   }
 
-  return new Kuzzle(new WebSocket(backend.host, backend.options), sdkOptions);
+  return new Kuzzle(new WebSocket(backend.host, backend.options || null), sdkOptions);
 };
 
 /**
