@@ -65,6 +65,20 @@ For example, you can build your up to connect the Websocket to `wss://kuzzle.myd
 VUE_APP_BACKEND_HOST=kuzzle.mydomain.com VUE_APP_BACKEND_PORT=443 VUE_APP_BACKEND_SSL=true npm run build
 ```
 
+## Specify the backend via a global variable
+
+You can also specify the backend config as a JSON-stringified POJO living in a global variable called `kuzzleBackend`. This variable must be available _before_ the Vue app is started, specifically before the `instantiateKuzzleSDK` public function is called. Here is an example of how to declare it
+
+```javascript
+const kuzzleBackend = JSON.stringify({
+  host: 'myhost.mydomain.com',
+  options: {
+    port: 443,
+    ssl: true
+  }
+})
+```
+
 ## Specify the backend via localStorage
 
 _Purely for debug purposes_, you can override all the backend configuration by setting your backend as stringified JSON in the `kuzzle-backend` Local Storage item, e.g.
@@ -74,6 +88,15 @@ _Purely for debug purposes_, you can override all the backend configuration by s
 ```
 
 **Beware that Local Storage is persistent and it is fairly easy to forget you set this item.** Use it consciously and keep in mind it is a good practice to unset it as soon as your debug session is over.
+
+## Backend declaration precedence order
+
+The plugin makes a choice of the available backend declaration by setting a preference order.
+
+* Local storage (`kuzzle-backend`)
+* Global variable (`kuzzleBackend`)
+* Environment variables
+* Options passed to `Vue.use`
 
 ## Accessing the Kuzzle SDK instance within the app
 

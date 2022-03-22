@@ -2,6 +2,7 @@ import { Kuzzle, WebSocket } from 'kuzzle-sdk';
 import _Vue  from 'vue';
 
 const LS_KEY = 'kuzzle-backend'
+const GLOBAL_NAME = 'kuzzleBackend'
 
 interface Backend {
   host: string;
@@ -52,8 +53,22 @@ export function getBackendFromLocalStorage() {
   return backend;
 }
 
+export function getBackendFromWindow() {
+  if (!window[GLOBAL_NAME]) {
+    return null
+  }
+
+  const backend = JSON.parse(window[GLOBAL_NAME])
+
+  if (typeof backend !== 'object') {
+    throw new Error(`Item found in global (${GLOBAL_NAME}) is malformed. Expected an object, found ${backend}`)
+  }
+
+  return backend;
+}
+
 export const instantiateKuzzleSDK = (backendsConfig: Backends, sdkOptions: any): Kuzzle => {
-  const backend:Backend | null = getBackendFromLocalStorage() || getBackendFromConf(backendsConfig)
+  const backend:Backend | null = getBackendFromLocalStorage() || getBackendFromWindow() || getBackendFromConf(backendsConfig)
 
   if (!backend) {
     throw new Error('No backend resolved.');
