@@ -54,11 +54,11 @@ export function getBackendFromLocalStorage() {
 }
 
 export function getBackendFromWindow() {
-  if (!window[GLOBAL_NAME]) {
+  if (!(window as any)[GLOBAL_NAME]) {
     return null
   }
 
-  const backend = JSON.parse(window[GLOBAL_NAME])
+  const backend = JSON.parse((window as any)[GLOBAL_NAME])
 
   if (typeof backend !== 'object') {
     throw new Error(`Item found in global (${GLOBAL_NAME}) is malformed. Expected an object, found ${backend}`)
