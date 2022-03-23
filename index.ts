@@ -1,19 +1,19 @@
 import { Kuzzle, WebSocket } from 'kuzzle-sdk';
-import _Vue from 'vue';
+import _Vue  from 'vue';
 
-const LS_KEY = 'kuzzle-backend';
-const GLOBAL_NAME = 'kuzzleBackend';
+const LS_KEY = 'kuzzle-backend'
+const GLOBAL_NAME = 'kuzzleBackend'
 
 interface Backend {
   host: string;
   options: {
     port: number;
-    sslConnection: boolean;
-  };
+    sslConnection: boolean
+  }
 }
 
 interface Backends {
-  [name: string]: Backend;
+  [name: string]: Backend
 }
 
 export function getBackendFromConf(backendsConfig: Backends) {
@@ -22,19 +22,19 @@ export function getBackendFromConf(backendsConfig: Backends) {
       host: process.env.VUE_APP_BACKEND_HOST || 'localhost',
       options: {
         port: parseInt(process.env.VUE_APP_BACKEND_PORT || '7512'),
-        sslConnection: process.env.VUE_APP_BACKEND_SSL === 'true' || false,
-      },
+        sslConnection: process.env.VUE_APP_BACKEND_SSL === 'true' || false
+      }
     },
-    ...backendsConfig,
-  };
+    ...backendsConfig
+  }
 
   const backendName: string = process.env.VUE_APP_BACKEND
     ? process.env.VUE_APP_BACKEND
     : 'default';
 
-  if (!backends[backendName]) {
-    throw new Error(`Unable to find backend ${backendName} in configuration.`);
-  }
+    if (!backends[backendName]) {
+      throw new Error(`Unable to find backend ${backendName} in configuration.`);
+    }
 
   return backends[backendName] ? backends[backendName] : null;
 }
@@ -104,7 +104,7 @@ export const instantiateKuzzleSDK = (
  * @see https://docs.kuzzle.io/sdk/js/7/core-classes/kuzzle/constructor/#options
  */
 export const VueKuzzle = {
-  install(Vue, options) {
+  install(Vue: typeof _Vue, options: any) {
     const sdkOptions = options.sdkOptions ? options.sdkOptions : {};
     Vue.prototype.$kuzzle = instantiateKuzzleSDK(options.backends, sdkOptions);
   },
