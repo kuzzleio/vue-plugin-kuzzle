@@ -6,7 +6,8 @@
   "types": "./index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\"",
-    "build": "tsc"
+    "build": "tsc",
+    "prepack": "npm run build"
   },
   "repository": {
     "type": "git",
