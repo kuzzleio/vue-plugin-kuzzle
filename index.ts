@@ -1,18 +1,23 @@
-import { Kuzzle, WebSocket } from 'kuzzle-sdk';
+import { Http, Kuzzle, KuzzleAbstractProtocol, WebSocket } from 'kuzzle-sdk';
 import _Vue  from 'vue';
 
 const LS_KEY = 'kuzzle-backend'
 const GLOBAL_NAME = 'kuzzleBackend'
 
-interface Backend {
+export enum KuzzleProtocol {
+  HTTP = 'http',
+  WEBSOCKET = 'websocket'
+}
+export interface Backend {
   host: string;
+  protocol: KuzzleProtocol
   options: {
     port: number;
-    sslConnection: boolean
+    sslConnection: boolean,
   }
 }
 
-interface Backends {
+export interface Backends {
   [name: string]: Backend
 }
 
@@ -20,6 +25,7 @@ export function getBackendFromConf(backendsConfig: Backends) {
   const backends: Backends = {
     default: {
       host: process.env.VUE_APP_BACKEND_HOST || 'localhost',
+      protocol: (process.env.VUE_APP_BACKEND_PROTO as KuzzleProtocol) || KuzzleProtocol.WEBSOCKET,
       options: {
         port: parseInt(process.env.VUE_APP_BACKEND_PORT || '7512'),
         sslConnection: process.env.VUE_APP_BACKEND_SSL === 'true' || false
@@ -67,6 +73,12 @@ export function getBackendFromWindow() {
   return backend;
 }
 
+/**
+ * Instantiates the Kuzzle SDK by resolving the backend from the given config.
+ * 
+ * @param backendsConfig 
+ * @param sdkOptions 
+ */
 export const instantiateKuzzleSDK = (backendsConfig: Backends, sdkOptions: any): Kuzzle => {
   const backend:Backend | null = getBackendFromLocalStorage() || getBackendFromWindow() || getBackendFromConf(backendsConfig)
 
@@ -78,8 +90,19 @@ export const instantiateKuzzleSDK = (backendsConfig: Backends, sdkOptions: any):
     throw new Error(`Backend is malformed (missing host)`);
   }
 
-  return new Kuzzle(new WebSocket(backend.host, backend.options || null), sdkOptions);
+  return new Kuzzle(protocolFactory(backend), sdkOptions);
 };
+
+const protocolFactory = (backend: Backend): KuzzleAbstractProtocol => {
+  switch (backend.protocol) {
+    case KuzzleProtocol.HTTP:
+      return new Http(backend.host, backend.options)
+    
+    case KuzzleProtocol.WEBSOCKET:
+    default:
+      return new WebSocket(backend.host, backend.options)
+  }
+}
 
 /**
  * The VueKuzzle plugin. Makes the Kuzzle SDK available in Vue components as
