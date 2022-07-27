@@ -35,6 +35,7 @@ An object of available backends to connect to. Backends are POJOs of the followi
 options.backends = {
   local: {
     host: 'localhost',
+    protocol: 'websocket',
     options: {
       port: 7512,
       sslConnection: false
@@ -58,6 +59,7 @@ Aside from the `backends` option, you can define the backend to connect to entir
 * `VUE_APP_BACKEND_HOST` contains the hostname (e.g. `kuzzle.mydomain.com`),
 * `VUE_APP_BACKEND_PORT` contains the port (e.g. `443`),
 * `VUE_APP_BACKEND_SSL` can be set to `true` if the connection supports the SSL layer (do not set this variable if SSL is not supported).
+* `VUE_APP_BACKEND_PROTO` can be set to either `http` or `websocket`. If left blank, Websocket protocol is used by default. 
 
 For example, you can build your up to connect the Websocket to `wss://kuzzle.mydomain.com:443` like the following
 
