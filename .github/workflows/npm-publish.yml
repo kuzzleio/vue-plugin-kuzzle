@@ -8,15 +8,43 @@ on:
     types: [published]
 
 jobs:
-  publish-npm:
-    runs-on: ubuntu-latest
+  lint:
+    name: Lint
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 16
+      - name: Install dependencies
+        run: npm ci
+      - name: Run lint
+        run: npm run test:lint
+
+  check-types:
+    name: Check types
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install dependencies
+        run: npm ci
+      - name: Run types tests
+        run: npm run test:types
+
+  publish-npm:
+    runs-on: ubuntu-22.04
+    needs: [lint, check-types]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
           registry-url: https://registry.npmjs.org/
       - run: |
+          npm install -g npm@9
           npm ci
           npm run build
           npm publish
