@@ -5,9 +5,11 @@
   "main": "index.js",
   "types": "./index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\"",
     "build": "tsc",
-    "prepack": "npm run build"
+    "prepack": "npm run build",
+    "test": "npm run test:lint && npm run test:types",
+    "test:lint": "eslint . --ext .ts",
+    "test:types": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
@@ -33,6 +35,7 @@
   },
   "devDependencies": {
     "@types/node": "^16.10.1",
+    "eslint-plugin-kuzzle": "^0.0.8",
     "typescript": "^4.4.3"
   }
 }

@@ -1,46 +1,46 @@
 import { Http, Kuzzle, KuzzleAbstractProtocol, WebSocket } from 'kuzzle-sdk';
-import _Vue  from 'vue';
+import _Vue from 'vue';
 
-const LS_KEY = 'kuzzle-backend'
-const GLOBAL_NAME = 'kuzzleBackend'
+const LS_KEY = 'kuzzle-backend';
+const GLOBAL_NAME = 'kuzzleBackend';
 
 export enum KuzzleProtocol {
   HTTP = 'http',
-  WEBSOCKET = 'websocket'
+  WEBSOCKET = 'websocket',
 }
 export interface Backend {
   host: string;
-  protocol: KuzzleProtocol
+  protocol: KuzzleProtocol;
   options: {
     port: number;
-    sslConnection: boolean,
-  }
+    sslConnection: boolean;
+  };
 }
 
 export interface Backends {
-  [name: string]: Backend
+  [name: string]: Backend;
 }
 
 export function getBackendFromConf(backendsConfig: Backends) {
+  /* eslint-disable sort-keys */
   const backends: Backends = {
     default: {
       host: process.env.VUE_APP_BACKEND_HOST || 'localhost',
       protocol: (process.env.VUE_APP_BACKEND_PROTO as KuzzleProtocol) || KuzzleProtocol.WEBSOCKET,
       options: {
         port: parseInt(process.env.VUE_APP_BACKEND_PORT || '7512'),
-        sslConnection: process.env.VUE_APP_BACKEND_SSL === 'true' || false
-      }
+        sslConnection: process.env.VUE_APP_BACKEND_SSL === 'true' || false,
+      },
     },
-    ...backendsConfig
+    ...backendsConfig,
+  };
+  /* eslint-enable sort-keys */
+
+  const backendName: string = process.env.VUE_APP_BACKEND ? process.env.VUE_APP_BACKEND : 'default';
+
+  if (!backends[backendName]) {
+    throw new Error(`Unable to find backend ${backendName} in configuration.`);
   }
-
-  const backendName: string = process.env.VUE_APP_BACKEND
-    ? process.env.VUE_APP_BACKEND
-    : 'default';
-
-    if (!backends[backendName]) {
-      throw new Error(`Unable to find backend ${backendName} in configuration.`);
-    }
 
   return backends[backendName] ? backends[backendName] : null;
 }
@@ -50,10 +50,12 @@ export function getBackendFromLocalStorage() {
   if (!lsItem) {
     return null;
   }
-  const backend = JSON.parse(lsItem)
+  const backend = JSON.parse(lsItem);
 
   if (typeof backend !== 'object') {
-    throw new Error(`Item found in localStorage (${LS_KEY}) is malformed. Expected an object, found ${backend}`)
+    throw new Error(
+      `Item found in localStorage (${LS_KEY}) is malformed. Expected an object, found ${backend}`,
+    );
   }
 
   return backend;
@@ -61,13 +63,15 @@ export function getBackendFromLocalStorage() {
 
 export function getBackendFromWindow() {
   if (!(window as any)[GLOBAL_NAME]) {
-    return null
+    return null;
   }
 
-  const backend = JSON.parse((window as any)[GLOBAL_NAME])
+  const backend = JSON.parse((window as any)[GLOBAL_NAME]);
 
   if (typeof backend !== 'object') {
-    throw new Error(`Item found in global (${GLOBAL_NAME}) is malformed. Expected an object, found ${backend}`)
+    throw new Error(
+      `Item found in global (${GLOBAL_NAME}) is malformed. Expected an object, found ${backend}`,
+    );
   }
 
   return backend;
@@ -75,12 +79,13 @@ export function getBackendFromWindow() {
 
 /**
  * Instantiates the Kuzzle SDK by resolving the backend from the given config.
- * 
- * @param backendsConfig 
- * @param sdkOptions 
+ *
+ * @param backendsConfig
+ * @param sdkOptions
  */
 export const instantiateKuzzleSDK = (backendsConfig: Backends, sdkOptions: any): Kuzzle => {
-  const backend:Backend | null = getBackendFromLocalStorage() || getBackendFromWindow() || getBackendFromConf(backendsConfig)
+  const backend: Backend | null =
+    getBackendFromLocalStorage() || getBackendFromWindow() || getBackendFromConf(backendsConfig);
 
   if (!backend) {
     throw new Error('No backend resolved.');
@@ -96,21 +101,21 @@ export const instantiateKuzzleSDK = (backendsConfig: Backends, sdkOptions: any):
 const protocolFactory = (backend: Backend): KuzzleAbstractProtocol => {
   switch (backend.protocol) {
     case KuzzleProtocol.HTTP:
-      return new Http(backend.host, backend.options)
-    
+      return new Http(backend.host, backend.options);
+
     case KuzzleProtocol.WEBSOCKET:
     default:
-      return new WebSocket(backend.host, backend.options)
+      return new WebSocket(backend.host, backend.options);
   }
-}
+};
 
 /**
  * The VueKuzzle plugin. Makes the Kuzzle SDK available in Vue components as
  * `this.$kuzzle`.
- * 
+ *
  * @param Vue The Vue application to apply the plugin to
  * @param options Options passed to the Kuzzle SDK constructor
- * 
+ *
  * @see https://docs.kuzzle.io/sdk/js/7/core-classes/kuzzle/constructor/#options
  */
 export function VueKuzzle(Vue: typeof _Vue, options: any) {
