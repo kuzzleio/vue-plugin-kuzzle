@@ -2,13 +2,15 @@
   "name": "vue-plugin-kuzzle",
   "version": "4.4.0",
   "description": "A Vuejs plugin shipping the Kuzzle SDK in your components",
-  "main": "index.js",
-  "types": "./index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "prepack": "npm run build",
     "test": "npm run test:lint && npm run test:types",
     "test:lint": "eslint . --ext .ts",
+    "test:lint:fix": "npm run test:lint -- --fix",
     "test:types": "tsc --noEmit"
   },
   "repository": {
@@ -27,15 +29,21 @@
   },
   "homepage": "https://github.com/kuzzleio/vue-plugin-kuzzle#readme",
   "peerDependencies": {
-    "kuzzle-sdk": "~7.x"
+    "kuzzle-sdk": "~7.x",
+    "typescript": ">= 5.1",
+    "vue": "2.7.*"
   },
   "dependencies": {
-    "kuzzle-sdk": "^7.7.6",
-    "vue": "^2.6.14"
+    "kuzzle-sdk": "~7.x",
+    "vue": "2.7.*"
   },
   "devDependencies": {
     "@types/node": "^16.10.1",
     "eslint-plugin-kuzzle": "^0.0.8",
-    "typescript": "^4.4.3"
-  }
+    "typescript": "5.1.*"
+  },
+  "files": [
+    "dist",
+    "vue-kuzzle.d.ts"
+  ]
 }

@@ -1,25 +1,37 @@
 {
   "compilerOptions": {
+    /* Emit */
     "target": "esnext",
     "module": "esnext",
-    "strict": true,
+    /* Build */
+    "outDir": "dist",
     "importHelpers": true,
-    "moduleResolution": "node",
-    "skipLibCheck": true,
-    "esModuleInterop": true,
     "declaration": true,
     "sourceMap": true,
+    // Ensure use `lf` like EOL on builded files
+    "newLine": "lf",
+    /* Module */
+    "moduleResolution": "node",
     "resolveJsonModule": true,
-    "baseUrl": ".",
+    /* Recommended */
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    /* Linting */
+    "strict": true,
+    "skipLibCheck": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    /* Lib */
     "lib": [
       "esnext",
       "dom",
-      "dom.iterable",
-      "scripthost"
-    ]
+      "dom.iterable"
+    ],
+    "baseUrl": ".",
   },
   "include": [
-    "./index.ts"
+    "./src/**/*.ts",
+    "./vue-kuzzle.d.ts"
   ],
   "exclude": [
     "node_modules"
