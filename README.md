@@ -59,7 +59,7 @@ Aside from the `backends` option, you can define the backend to connect to entir
 * `VUE_APP_BACKEND_HOST` contains the hostname (e.g. `kuzzle.mydomain.com`),
 * `VUE_APP_BACKEND_PORT` contains the port (e.g. `443`),
 * `VUE_APP_BACKEND_SSL` can be set to `true` if the connection supports the SSL layer (do not set this variable if SSL is not supported).
-* `VUE_APP_BACKEND_PROTO` can be set to either `http` or `websocket`. If left blank, Websocket protocol is used by default. 
+* `VUE_APP_BACKEND_PROTO` can be set to either `http` or `websocket`. If left blank, Websocket protocol is used by default.
 
 For example, you can build your up to connect the Websocket to `wss://kuzzle.mydomain.com:443` like the following
 
@@ -112,4 +112,14 @@ And from anywhere in your app where the `Vue` class is available, as
 
 ```javascript
 Vue.prototype.$kuzzle;
+```
+
+### Composition API (Vue 2.7 & 3)
+
+In components with composition API you can use the composable to access the Kuzzle SDK instance
+
+```javascript
+import { useKuzzle } from 'vue-plugin-kuzzle';
+
+const $kuzzle = useKuzzle();
 ```
