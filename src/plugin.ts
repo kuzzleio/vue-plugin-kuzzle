@@ -1,10 +1,23 @@
 import { PluginFunction } from 'vue';
+import type { Kuzzle } from 'kuzzle-sdk';
+
 import { instantiateKuzzleSDK } from './helpers';
-import { Backends, SDKOptions } from './types';
+import type { Backends, SDKOptions } from './types';
 
 export interface VueKuzzleOptions {
   backends: Backends;
   sdkOptions: SDKOptions;
+}
+
+/**
+ * Augment the typings of Vue.js
+ *
+ * ? Needed to add type for `$kuzzle` on Vue type
+ */
+declare module 'vue/types/vue' {
+  interface Vue {
+    $kuzzle: Kuzzle;
+  }
 }
 
 /**

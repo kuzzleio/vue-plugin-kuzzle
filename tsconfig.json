@@ -31,7 +31,6 @@
   },
   "include": [
     "./src/**/*.ts",
-    "./vue-kuzzle.d.ts"
   ],
   "exclude": [
     "node_modules"
