@@ -6,7 +6,7 @@ import type { Backends, SDKOptions } from './types';
 
 export interface VueKuzzleOptions {
   backends: Backends;
-  sdkOptions: SDKOptions;
+  sdkOptions?: SDKOptions;
 }
 
 /**
