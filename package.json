@@ -1,6 +1,6 @@
 {
   "name": "vue-plugin-kuzzle",
-  "version": "4.5.2",
+  "version": "4.6.0",
   "description": "A Vuejs plugin shipping the Kuzzle SDK in your components",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
