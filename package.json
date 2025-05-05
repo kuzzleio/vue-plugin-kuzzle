@@ -31,11 +31,11 @@
   "peerDependencies": {
     "kuzzle-sdk": "~7.x",
     "typescript": ">= 5.1",
-    "vue": "2.7.*"
+    "vue": "^3.5.13"
   },
   "dependencies": {
     "kuzzle-sdk": "~7.x",
-    "vue": "2.7.*"
+    "vue": "^3.5.13"
   },
   "devDependencies": {
     "@types/node": "^16.10.1",

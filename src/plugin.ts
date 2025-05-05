@@ -1,4 +1,4 @@
-import { PluginFunction } from 'vue';
+import { Plugin } from 'vue';
 import type { Kuzzle } from 'kuzzle-sdk';
 
 import { instantiateKuzzleSDK } from './helpers';
@@ -14,7 +14,7 @@ export interface VueKuzzleOptions {
  *
  * ? Needed to add type for `$kuzzle` on Vue type
  */
-declare module 'vue/types/vue' {
+declare module 'vue' {
   interface Vue {
     $kuzzle: Kuzzle;
   }
@@ -29,7 +29,7 @@ declare module 'vue/types/vue' {
  *
  * @see https://docs.kuzzle.io/sdk/js/7/core-classes/kuzzle/constructor/#options
  */
-export const VueKuzzle: PluginFunction<VueKuzzleOptions> = (Vue, options) => {
+export const VueKuzzle: Plugin = (Vue, options: VueKuzzleOptions) => {
   const sdkOptions = options?.sdkOptions ?? {};
-  Vue.prototype.$kuzzle = instantiateKuzzleSDK(options?.backends, sdkOptions);
+  Vue.config.globalProperties.$kuzzle = instantiateKuzzleSDK(options?.backends, sdkOptions);
 };
