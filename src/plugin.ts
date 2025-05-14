@@ -29,7 +29,6 @@ declare module 'vue' {
  *
  * @see https://docs.kuzzle.io/sdk/js/7/core-classes/kuzzle/constructor/#options
  */
-export const VueKuzzle: Plugin = (Vue, options: VueKuzzleOptions) => {
-  const sdkOptions = options?.sdkOptions ?? {};
-  Vue.config.globalProperties.$kuzzle = instantiateKuzzleSDK(options?.backends, sdkOptions);
+export const VueKuzzle: Plugin = (Vue, kuzzle) => {
+  Vue.config.globalProperties.$kuzzle = kuzzle;
 };
