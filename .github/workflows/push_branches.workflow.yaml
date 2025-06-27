@@ -30,7 +30,7 @@ jobs:
         run: npm ci
 
       - name: Build plugin
-        run: npm build
+        run: npm run build
 
       - name: Release
         env:
