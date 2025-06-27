@@ -40,7 +40,8 @@
   "devDependencies": {
     "@types/node": "^16.10.1",
     "eslint-plugin-kuzzle": "^0.0.8",
-    "typescript": "5.1.*"
+    "typescript": "5.1.*",
+    "semantic-release-config-kuzzle": "1.1.2"
   },
   "files": [
     "dist"

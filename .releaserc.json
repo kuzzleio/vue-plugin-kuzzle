@@ -1,0 +1,18 @@
+{
+  "extends": [
+    "semantic-release-config-kuzzle"
+  ],
+  "branches": [
+    {
+      "name": "master"
+    },
+    {
+      "name": "beta",
+      "prerelease": true
+    },
+    {
+      "name": "vue3",
+      "prerelease": true
+    }
+  ]
+}
