@@ -1,3 +1,17 @@
+## [4.7.0](https://github.com/kuzzleio/vue-plugin-kuzzle/compare/v4.6.0...v4.7.0) (2025-06-27)
+
+
+### Features
+
+* add semantic ([3bdf050](https://github.com/kuzzleio/vue-plugin-kuzzle/commit/3bdf05023adb0ab880a10eddf3ea35b51eb9965b))
+* prepare release with semantic ([cba504e](https://github.com/kuzzleio/vue-plugin-kuzzle/commit/cba504ecebe6758a75bb55e96f0616d36854e46c))
+* semantic trigger ([6b68ce9](https://github.com/kuzzleio/vue-plugin-kuzzle/commit/6b68ce9019bee797f22792d7e0c5c3fa144819ea))
+
+
+### Bug Fixes
+
+* typo in workflow ([9992d63](https://github.com/kuzzleio/vue-plugin-kuzzle/commit/9992d63d8582f66035dc3f6e6cb06753d9364bcc))
+
 ## [4.7.0-beta.1](https://github.com/kuzzleio/vue-plugin-kuzzle/compare/v4.6.0...v4.7.0-beta.1) (2025-06-27)
 
 
