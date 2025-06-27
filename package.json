@@ -1,6 +1,6 @@
 {
   "name": "vue-plugin-kuzzle",
-  "version": "4.6.0",
+  "version": "4.7.0-beta.1",
   "description": "A Vuejs plugin shipping the Kuzzle SDK in your components",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -40,7 +40,8 @@
   "devDependencies": {
     "@types/node": "^16.10.1",
     "eslint-plugin-kuzzle": "^0.0.8",
-    "typescript": "5.1.*"
+    "typescript": "5.1.*",
+    "semantic-release-config-kuzzle": "1.1.2"
   },
   "files": [
     "dist"
