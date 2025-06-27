@@ -1,3 +1,10 @@
+## [4.7.0-vue3.2](https://github.com/kuzzleio/vue-plugin-kuzzle/compare/v4.7.0-vue3.1...v4.7.0-vue3.2) (2025-06-27)
+
+
+### Features
+
+* prepare release with semantic ([cba504e](https://github.com/kuzzleio/vue-plugin-kuzzle/commit/cba504ecebe6758a75bb55e96f0616d36854e46c))
+
 ## [4.7.0-vue3.1](https://github.com/kuzzleio/vue-plugin-kuzzle/compare/v4.6.0...v4.7.0-vue3.1) (2025-06-27)
 
 
