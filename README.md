@@ -4,28 +4,41 @@ This plugin simply exposes the Kuzzle SDK in your Vuejs components.
 
 ## Compatibility matrix
 
-| Kuzzle Version | Vue.js Kuzzle Plugin Version |
-| -------------- | ---------------------------- |
-| 1.x.x          | 1.x.x                        |
-| 2.x.x          | 2.x.x and higher             |
+| Vue.js | Kuzzle | Vue.js Kuzzle Plugin | npm dist-tag | Branch     |
+| ------ | ------ | -------------------- | ------------ | ---------- |
+| 3.x    | 2.x    | 5.x                  | `latest`     | `master`   |
+| 2.7    | 2.x    | 4.x                  | `vue2`       | `4-stable` |
+| 2.x    | 1.x    | 1.x                  | -            | `1-stable` |
+
+`kuzzle-sdk` and `vue` are peer dependencies: install them alongside the plugin.
 
 ## Getting started
 
 Install the plugin via
 
 ```bash
-npm install vue-plugin-kuzzle
+npm install vue-plugin-kuzzle kuzzle-sdk vue
 ```
 
-Then, in your Vuejs application, you need to register the plugin in your `Vue` class.
+For a Vue 2.7 application, install the 4.x line instead: `npm install vue-plugin-kuzzle@vue2`.
+
+Then, register the plugin in your Vue application. It takes either an already instantiated Kuzzle SDK:
 
 ```javascript
+import { createApp } from 'vue';
+import { Kuzzle, WebSocket } from 'kuzzle-sdk';
 import { VueKuzzle } from 'vue-plugin-kuzzle';
 
-Vue.use(VueKuzzle, options);
+const kuzzle = new Kuzzle(new WebSocket('localhost'));
+
+createApp(App).use(VueKuzzle, kuzzle).mount('#app');
 ```
 
-Where `options` may contain the following options.
+or the options to instantiate one, as described below:
+
+```javascript
+createApp(App).use(VueKuzzle, options).mount('#app');
+```
 
 ### `options.backends`
 
@@ -98,28 +111,24 @@ The plugin makes a choice of the available backend declaration by setting a pref
 * Local storage (`kuzzle-backend`)
 * Global variable (`kuzzleBackend`)
 * Environment variables
-* Options passed to `Vue.use`
+* Options passed to `app.use`
 
 ## Accessing the Kuzzle SDK instance within the app
 
-You'll be able to access the Kuzzle SDK instance from the components as
-
-```javascript
-this.$kuzzle;
-```
-
-And from anywhere in your app where the `Vue` class is available, as
-
-```javascript
-Vue.prototype.$kuzzle;
-```
-
-### Composition API (Vue 2.7 & 3)
-
-In components with composition API you can use the composable to access the Kuzzle SDK instance
+With the Composition API, use the composable inside `setup()` or `<script setup>`:
 
 ```javascript
 import { useKuzzle } from 'vue-plugin-kuzzle';
 
-const $kuzzle = useKuzzle();
+const kuzzle = useKuzzle();
 ```
+
+With the Options API, the instance is available in components as `this.$kuzzle` (typed through `ComponentCustomProperties`).
+
+The instance is also provided under the `kuzzleInjectionKey` exported by the plugin, for `inject(kuzzleInjectionKey)`.
+
+## Migrating from 4.x (Vue 2)
+
+* Register the plugin on the app: `createApp(App).use(VueKuzzle, options)` instead of `Vue.use(VueKuzzle, options)`. The options are unchanged, and an already instantiated `Kuzzle` can be passed instead.
+* `Vue.prototype.$kuzzle` is gone: use `useKuzzle()`, `this.$kuzzle` or `inject(kuzzleInjectionKey)`.
+* `vue` and `kuzzle-sdk` are now peer dependencies, no longer installed by the plugin.

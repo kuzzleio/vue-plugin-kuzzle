@@ -1,36 +1,25 @@
-import { getCurrentInstance, inject, Vue } from 'vue';
-import { Kuzzle } from 'kuzzle-sdk';
+import { hasInjectionContext, inject } from 'vue';
+import type { Kuzzle } from 'kuzzle-sdk';
 
-function getVueInstance(method: string): Vue {
-  const vueInstance = getCurrentInstance();
-  // Check only in development mode otherwise throw a false error
-  if (process.env.NODE_ENV !== 'production' && vueInstance === null) {
-    throw new Error(
-      `Missing current instance. ${method}() must be called inside <script setup> or setup().`,
-    );
-  }
-  // eslint-disable-next-line eqeqeq
-  if (vueInstance == null) {
-    throw new Error(
-      `Missing current instance. ${method}() must be called inside <script setup> or setup().`,
-    );
-  }
-  return vueInstance.proxy as unknown as Vue;
-}
+import { kuzzleInjectionKey } from '../plugin';
 
+/**
+ * Returns the Kuzzle SDK instance provided by the VueKuzzle plugin.
+ *
+ * Must be called inside `setup()` / `<script setup>` (or `app.runWithContext()`)
+ * of an app that installed the plugin.
+ */
 export function useKuzzle(): Kuzzle {
-  const $kuzzle = getVueInstance('useKuzzle').$kuzzle;
-
-  // Check only in development mode otherwise throw a false error
-  if (process.env.NODE_ENV !== 'production' && $kuzzle === null) {
-    throw new Error(
-      `Missing current instance. useKuzzle() must be called inside <script setup> or setup().`,
-    );
+  if (!hasInjectionContext()) {
+    throw new Error('useKuzzle() must be called inside <script setup> or setup().');
   }
 
-  const kuzzle = inject<Kuzzle>('$kuzzle', $kuzzle);
-  if (typeof kuzzle === 'undefined') {
-    throw new Error('$kuzzle is not provided');
+  const kuzzle = inject(kuzzleInjectionKey, null);
+
+  if (kuzzle === null) {
+    throw new Error(
+      'No Kuzzle SDK instance provided: install the VueKuzzle plugin with app.use().',
+    );
   }
 
   return kuzzle;
