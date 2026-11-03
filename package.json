@@ -9,9 +9,9 @@
     "build": "tsc",
     "prepack": "npm run build",
     "test": "npm run test:lint && npm run test:types",
-    "test:lint": "eslint . --ext .ts",
-    "test:lint:fix": "npm run test:lint -- --fix",
-    "test:types": "tsc --noEmit"
+    "test:lint": "eslint .",
+    "test:lint:fix": "eslint . --fix",
+    "test:types": "tsc --noEmit -p tsconfig.test.json"
   },
   "repository": {
     "type": "git",
@@ -38,10 +38,11 @@
     "vue": "2.7.*"
   },
   "devDependencies": {
-    "@types/node": "^16.10.1",
-    "eslint-plugin-kuzzle": "^0.0.8",
-    "typescript": "5.1.*",
-    "semantic-release-config-kuzzle": "1.1.2"
+    "@types/node": "^24.19.2",
+    "eslint": "^10.14.0",
+    "eslint-plugin-kuzzle": "^2.0.0",
+    "semantic-release-config-kuzzle": "1.8.0",
+    "typescript": "~6.0.3"
   },
   "files": [
     "dist"

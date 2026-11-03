@@ -4,14 +4,13 @@
   ],
   "branches": [
     {
-      "name": "master"
+      "name": "4-stable",
+      "range": "4.x",
+      "channel": "vue2"
     },
+    "master",
     {
       "name": "beta",
-      "prerelease": true
-    },
-    {
-      "name": "vue3",
       "prerelease": true
     }
   ]
