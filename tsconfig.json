@@ -1,19 +1,15 @@
 {
   "compilerOptions": {
     /* Emit */
-    "target": "esnext",
+    "target": "es2022",
     "module": "esnext",
-    /* Build */
+    "moduleResolution": "bundler",
     "outDir": "dist",
-    "importHelpers": true,
+    "rootDir": "src",
     "declaration": true,
     "sourceMap": true,
-    // Ensure use `lf` like EOL on builded files
     "newLine": "lf",
-    /* Module */
-    "moduleResolution": "node",
     "resolveJsonModule": true,
-    /* Recommended */
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     /* Linting */
@@ -21,18 +17,8 @@
     "skipLibCheck": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    /* Lib */
-    "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable"
-    ],
-    "baseUrl": ".",
+    "types": ["node"],
+    "lib": ["es2022", "dom", "dom.iterable"]
   },
-  "include": [
-    "./src/**/*.ts",
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["./src/**/*.ts"]
 }

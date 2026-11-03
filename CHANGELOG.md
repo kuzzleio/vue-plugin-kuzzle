@@ -1,3 +1,11 @@
+## [4.8.0-vue3.1](https://github.com/kuzzleio/vue-plugin-kuzzle/compare/v4.7.0...v4.8.0-vue3.1) (2025-06-27)
+
+
+### Features
+
+* change plugin initialization ([7963435](https://github.com/kuzzleio/vue-plugin-kuzzle/commit/796343534a03288f4940b6608cd7567a9854f803))
+* upgrade to vue3 ([efc82a1](https://github.com/kuzzleio/vue-plugin-kuzzle/commit/efc82a102f7b12a13c483836e2a6638a84b96da0))
+
 ## [4.7.0](https://github.com/kuzzleio/vue-plugin-kuzzle/compare/v4.6.0...v4.7.0) (2025-06-27)
 
 
